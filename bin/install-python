@@ -46,7 +46,7 @@ def main() -> int:
         ppa = 'ppa:deadsnakes/ppa'
 
     py = f'python{version}'
-    packages = [f'{py}-dev']
+    packages = [f'{py}-dev', 'libssl1.0-dev']
     if args.debug:
         packages.append(f'{py}-dbg')
 
