@@ -48,17 +48,10 @@ def main() -> int:
         ppa = 'ppa:deadsnakes/ppa'
 
     py = f'python{version}'
-    packages = [f'{py}-dev', f'{py}-venv']
-    if float(version) >= 3.9:
-        packages.append(f'{py}-distutils')
-    else:
-        packages.append('python3-distutils')
+    packages = [f'{py}-dev']
     if args.debug:
         packages.append(f'{py}-dbg')
 
-    envdir = os.path.expanduser(f'~/venv-{version}')
-    bindir = os.path.join(envdir, 'bin')
-    pip = os.path.join(bindir, 'pip')
     py_executable = f'{py}-dbg' if args.debug else py
 
     groups = (
@@ -72,11 +65,6 @@ def main() -> int:
                 'sudo', 'apt-get', 'install', '-y', '--no-install-recommends',
                 *packages,
             ),
-        ),
-        Group.make(
-            f'set up {py_executable} environment',
-            (py_executable, '-mvenv', envdir),
-            (pip, 'install', '--upgrade', 'pip', 'setuptools', 'wheel'),
         ),
     )
 
