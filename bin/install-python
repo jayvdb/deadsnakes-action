@@ -13,7 +13,7 @@ class Group(NamedTuple):
     cmds: Tuple[Tuple[str, ...], ...]
 
     @classmethod
-    def make(cls, section: str, *cmds: tuple[str, ...]) -> Group:
+    def make(cls, section: str, *cmds: Tuple[str, ...]) -> "Group":
         return cls(section, cmds)
 
 
